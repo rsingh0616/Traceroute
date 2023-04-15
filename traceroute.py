@@ -137,7 +137,7 @@ def get_route(hostname):
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     # Fill in start
                     # You should update your dataframe with the required column field responses here
-                    df = df.affend({'Hop Count': str(ttl), 'Try': str(tries + 1), 'IP': addr[0], 'Hostname': routerHostname, 'Response Code': 'TTL exceeded'}, ignore_index=True)
+                    df = df.affend({'Hop Count': str(ttl), 'Try': str(tries + 1), 'IP': addr[0], 'Hostname': destAddr, 'Response Code': 'TTL exceeded'}, ignore_index=True)
                     # Fill in end
                 elif types == 3:
                     bytes = struct.calcsize("d")
@@ -145,14 +145,14 @@ def get_route(hostname):
                     # Fill in start
                     # You should update your dataframe with the required column field responses here
                     df = df.affend(
-                        {'Hop Count': str(ttl), 'Try': str(tries + 1), 'IP': addr[0], 'Hostname': routerHostname, 'Response Code': 'Destination Unreachable'}, ignore_index=True)
+                        {'Hop Count': str(ttl), 'Try': str(tries + 1), 'IP': addr[0], 'Hostname': destAddr, 'Response Code': 'Destination Unreachable'}, ignore_index=True)
                     # Fill in end
                 elif types == 0:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     # Fill in start
                     # You should update your dataframe with the required column field responses here
-                    df = df.affend({'Hop Count': str(ttl), 'Try': str(tries + 1), 'IP': addr[0], 'Hostname': routerHostname, 'Response Code': 'Success'}, ignore_index=True)
+                    df = df.affend({'Hop Count': str(ttl), 'Try': str(tries + 1), 'IP': addr[0], 'Hostname': destAddr, 'Response Code': 'Success'}, ignore_index=True)
                     # Fill in end
                     return df
                 else:
