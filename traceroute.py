@@ -98,7 +98,7 @@ def get_route(hostname):
                     # Fill in start
                     # append response to your dataframe including hop #, try #, and "timeout" responses as required by the acceptance criteria
                     df = pd.concat([df, pd.DataFrame({'Hop Count': str(ttl), 'Try': str(tries), 'IP': '*', 'Hostname': '*', 'Response Code': 'timeout'}, index=[0])], ignore_index=True)
-                    print(df)
+                    # print(df)
                     # Fill in end
                     recvPacket = mySocket.recvfrom(1024)
                     addr = recvPacket[1]
@@ -109,7 +109,7 @@ def get_route(hostname):
                     # append response to your dataframe including hop #, try #, and "timeout" responses as required by the acceptance criteria
                     # df = df.append({'Hop Count': str(ttl), 'Try': str(tries+1), 'IP': '*', 'Hostname': '*', 'Response Code': 'timeout'}, ignore_index=True)
                     df = pd.concat([df, pd.DataFrame({'Hop Count': str(ttl), 'Try': str(tries), 'IP': '*', 'Hostname': '*', 'Response Code': 'timeout'}, index=[0])], ignore_index=True)
-                    print(df)
+                    # print(df)
                     # Fill in end
             except Exception as e:
                 # print (e) # uncomment to view exceptions
