@@ -86,7 +86,7 @@ def get_route(hostname):
 
             mySocket.setsockopt(IPPROTO_IP, IP_TTL, struct.pack('I', ttl))
             mySocket.settimeout(TIMEOUT)
-            recvPacket = None
+            recvPacket = b''
             try:
                 d = build_packet()
                 mySocket.sendto(d, (destAddr, 0))
