@@ -186,7 +186,7 @@ def get_route(hostname):
                 break
             finally:
                 mySocket.close()
-        return df
+    return df
 
 
 if __name__ == '__main__':
