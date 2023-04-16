@@ -132,11 +132,11 @@ def get_route(hostname):
                 # Fill in start
                 # Fetch the icmp type from the IP packet
                 icmpHeader = recvPacket[20:28]
-                print(icmpHeader)
                 if len(icmpHeader) >= 8:
                     types, code, checksum_val, ID, sequence = struct.unpack("bbHHh", icmpHeader)
                 else:
                     continue
+                print(types)
                 print("The sattements upto ICMP type are all working")
                 # Fill in end
                 try:  # try to fetch the hostname of the router that returned the packet - don't confuse with the hostname that you are tracing
@@ -186,7 +186,7 @@ def get_route(hostname):
                 break
             finally:
                 mySocket.close()
-    return df
+        return df
 
 
 if __name__ == '__main__':
