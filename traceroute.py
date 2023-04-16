@@ -104,7 +104,6 @@ def get_route(hostname):
                     print("The sattements are all working 1")
                     # Fill in end
                     recvPacket = mySocket.recvfrom(1024)
-                    addr = recvPacket[1]
                     print(recvPacket, "  ", addr)
                     timeReceived = time.time()
                     timeLeft = timeLeft - howLongInSelect
