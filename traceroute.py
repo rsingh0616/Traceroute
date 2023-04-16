@@ -99,7 +99,7 @@ def get_route(hostname):
                     # Fill in start
                     # append response to your dataframe including hop #, try #, and "timeout" responses as required by the acceptance criteria
                     df = pd.concat([df, pd.DataFrame({'Hop Count': str(ttl), 'Try': str(tries), 'IP': '*', 'Hostname': '*', 'Response Code': 'timeout'}, index=[0])], ignore_index=True)
-                    print(df)
+                    # print(df)
                     # Fill in end
                     recvPacket = mySocket.recvfrom(1024)
                     addr = recvPacket[1]
@@ -111,7 +111,7 @@ def get_route(hostname):
                     # append response to your dataframe including hop #, try #, and "timeout" responses as required by the acceptance criteria
                     # df = df.append({'Hop Count': str(ttl), 'Try': str(tries+1), 'IP': '*', 'Hostname': '*', 'Response Code': 'timeout'}, ignore_index=True)
                     df = pd.concat([df, pd.DataFrame({'Hop Count': str(ttl), 'Try': str(tries), 'IP': '*', 'Hostname': '*', 'Response Code': 'timeout'}, index=[0])], ignore_index=True)
-                    # print(df)
+                    print(df)
                     # Fill in end
             except Exception as e:
                 # print (e) # uncomment to view exceptions
@@ -145,6 +145,7 @@ def get_route(hostname):
                     # You should update your dataframe with the required column field responses here
                     # df = df.append({'Hop Count': str(ttl), 'Try': str(tries + 1), 'IP': addr[0], 'Hostname': routerHostname, 'Response Code': 'TTL exceeded'}, ignore_index=True)
                     df = pd.concat([df, pd.DataFrame({'Hop Count': str(ttl), 'Try': str(tries), 'IP': str(addr), 'Hostname': str(routerHostname), 'Response Code': 'TTL exceeded'}, index=[0])], ignore_index=True)
+                    print(df)
                     # Fill in end
                 elif types == 3:
                     bytes = struct.calcsize("d")
@@ -153,6 +154,7 @@ def get_route(hostname):
                     # You should update your dataframe with the required column field responses here
                     # df = df.append({'Hop Count': str(ttl), 'Try': str(tries + 1), 'IP': addr[0], 'Hostname': routerHostname, 'Response Code': 'Destination Unreachable'}, ignore_index=True)
                     df = pd.concat([df, pd.DataFrame({'Hop Count': str(ttl), 'Try': str(tries), 'IP': str(addr), 'Hostname': str(routerHostname), 'Response Code': 'Destination Unreachable'}, index=[0])], ignore_index=True)
+                    print(df)
                     # Fill in end
                 elif types == 0:
                     bytes = struct.calcsize("d")
@@ -161,6 +163,7 @@ def get_route(hostname):
                     # You should update your dataframe with the required column field responses here
                     # df = df.append({'Hop Count': str(ttl), 'Try': str(tries + 1), 'IP': addr[0], 'Hostname': routerHostname, 'Response Code': 'Success'}, ignore_index=True)
                     df = pd.concat([df, pd.DataFrame({'Hop Count': str(ttl), 'Try': str(tries), 'IP': str(addr), 'Hostname': str(routerHostname), 'Response Code': 'Success'}, index=[0])], ignore_index=True)
+                    print(df)
                     # Fill in end
                     return df
                 else:
@@ -168,6 +171,7 @@ def get_route(hostname):
                     # If there is an exception/error to your if statements, you should append that to your df here
                     # df = df.append({'Hop Count': str(ttl), 'Try': str(tries + 1), 'IP': '*', 'Hostname': '*', 'Response Code': 'Unknown'}, ignore_index=True)
                     df = pd.concat([df, pd.DataFrame({'Hop Count': str(ttl), 'Try': str(tries), 'IP': str(addr), 'Hostname': str(routerHostname), 'Response Code': 'Unknown'}, index=[0])], ignore_index=True)
+                    print(df)
                     # Fill in end
                 break
             finally:
