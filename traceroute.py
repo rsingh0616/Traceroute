@@ -130,7 +130,7 @@ def get_route(hostname):
                 # Fill in end
                 try:  # try to fetch the hostname of the router that returned the packet - don't confuse with the hostname that you are tracing
                     # Fill in start
-                    routerHostname = socket.gethostbyaddr(addr)
+                    routerHostname = gethostbyaddr(addr[0])[0]
                     print(routerHostname)
                     # Fill in end
                 except herror:  # if the router host does not provide a hostname use "hostname not returnable"
