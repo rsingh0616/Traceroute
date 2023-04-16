@@ -111,17 +111,17 @@ def get_route(hostname):
                 if timeLeft <= 0:
                     # Fill in start
                     # append response to your dataframe including hop #, try #, and "timeout" responses as required by the acceptance criteria
-                    df = df.append({'Hop Count': str(ttl), 'Try': str(tries+1), 'IP': '*', 'Hostname': '*', 'Response Code': 'timeout'}, ignore_index=True)
+                    #df = df.append({'Hop Count': str(ttl), 'Try': str(tries+1), 'IP': '*', 'Hostname': '*', 'Response Code': 'timeout'}, ignore_index=True)
                     #df = pd.concat([df, pd.DataFrame({'Hop Count': str(ttl), 'Try': str(tries), 'IP': '*', 'Hostname': '*', 'Response Code': 'timeout'}, index=[0])], ignore_index=True)
-                    #df = pd.concat([df, pd.DataFrame({'Hop Count': ttl, 'Try': tries, 'IP': '*', 'Hostname': '*', 'Response Code': 'timeout'},index=[0])], ignore_index=True)
+                    df = pd.concat([df, pd.DataFrame({'Hop Count': ttl, 'Try': tries, 'IP': '*', 'Hostname': '*', 'Response Code': 'timeout'},index=[0])], ignore_index=True)
                     print(df)
                     print("The sattements are all working 2")
                     # Fill in end
             except Exception as e:
                 # print (e) # uncomment to view exceptions
-                df = df.append({'Hop Count': str(ttl), 'Try': str(tries + 1), 'IP': '*', 'Hostname': '*', 'Response Code': str(e)}, ignore_index=True)
+                #df = df.append({'Hop Count': str(ttl), 'Try': str(tries + 1), 'IP': '*', 'Hostname': '*', 'Response Code': str(e)}, ignore_index=True)
                 #df = pd.concat([df, pd.DataFrame({'Hop Count': str(ttl), 'Try': str(tries), 'IP': '*', 'Hostname': '*', 'Response Code': str(e)}, index=[0])], ignore_index=True)
-                #df = pd.concat([df, pd.DataFrame({'Hop Count': ttl, 'Try': tries, 'IP': '*', 'Hostname': '*', 'Response Code': 'timeout'},index=[0])], ignore_index=True)
+                df = pd.concat([df, pd.DataFrame({'Hop Count': ttl, 'Try': tries, 'IP': '*', 'Hostname': '*', 'Response Code': 'str(e)'},index=[0])], ignore_index=True)
                 print("The sattements are all working 3")
                 print(df)
                 #continue
