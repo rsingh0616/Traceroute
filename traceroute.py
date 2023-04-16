@@ -145,7 +145,7 @@ def get_route(hostname):
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     # Fill in start
                     # You should update your dataframe with the required column field responses here
-                    df = df.append({'Hop Count': str(ttl), 'Try': str(tries + 1), 'IP': str(addr[0]), 'Hostname': routerHostname, 'Response Code': 'TTL exceeded'}, ignore_index=True)
+                    df = df.append({'Hop Count': str(ttl), 'Try': str(tries + 1), 'IP': addr[0], 'Hostname': routerHostname, 'Response Code': 'TTL exceeded'}, ignore_index=True)
                     # df = pd.concat([df, pd.DataFrame({'Hop Count': str(ttl), 'Try': str(tries), 'IP': str(addr), 'Hostname': str(routerHostname), 'Response Code': 'TTL exceeded'}, index=[0])], ignore_index=True)
                     #df = pd.concat([df, pd.DataFrame({'Hop Count': ttl, 'Try': tries, 'IP': addr, 'Hostname': routerHostname,'Response Code': 'TTL exceeded'}, index=[0])], ignore_index=True)
                     # Fill in end
@@ -154,7 +154,7 @@ def get_route(hostname):
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     # Fill in start
                     # You should update your dataframe with the required column field responses here
-                    df = df.append({'Hop Count': str(ttl), 'Try': str(tries + 1), 'IP': str(addr[0]), 'Hostname': routerHostname, 'Response Code': 'Destination Unreachable'}, ignore_index=True)
+                    df = df.append({'Hop Count': str(ttl), 'Try': str(tries + 1), 'IP': addr[0], 'Hostname': routerHostname, 'Response Code': 'Destination Unreachable'}, ignore_index=True)
                     # df = pd.concat([df, pd.DataFrame({'Hop Count': str(ttl), 'Try': str(tries), 'IP': str(addr), 'Hostname': str(routerHostname), 'Response Code': 'Destination Unreachable'}, index=[0])], ignore_index=True)
                     #df = pd.concat([df, pd.DataFrame({'Hop Count': ttl, 'Try': tries, 'IP': addr, 'Hostname': routerHostname,'Response Code': 'Destination Unreachable'}, index=[0])], ignore_index=True)
                     # Fill in end
@@ -163,7 +163,7 @@ def get_route(hostname):
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     # Fill in start
                     # You should update your dataframe with the required column field responses here
-                    df = df.append({'Hop Count': str(ttl), 'Try': str(tries + 1), 'IP': str(addr[0]), 'Hostname': routerHostname, 'Response Code': 'Success'}, ignore_index=True)
+                    df = df.append({'Hop Count': str(ttl), 'Try': str(tries + 1), 'IP': addr[0], 'Hostname': routerHostname, 'Response Code': 'Success'}, ignore_index=True)
                     # df = pd.concat([df, pd.DataFrame({'Hop Count': str(ttl), 'Try': str(tries), 'IP': str(addr), 'Hostname': str(routerHostname), 'Response Code': 'Success'}, index=[0])], ignore_index=True)
                     #df = pd.concat([df, pd.DataFrame({'Hop Count': ttl, 'Try': tries, 'IP': addr, 'Hostname': routerHostname,'Response Code': 'Success'}, index=[0])], ignore_index=True)
                     # Fill in end
