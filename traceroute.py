@@ -132,6 +132,7 @@ def get_route(hostname):
                 # Fill in start
                 # Fetch the icmp type from the IP packet
                 icmpHeader = recvPacket[20:28]
+                print(icmpHeader)
                 if len(icmpHeader) >= 8:
                     types, code, checksum_val, ID, sequence = struct.unpack("bbHHh", icmpHeader)
                 else:
