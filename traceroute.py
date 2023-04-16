@@ -121,6 +121,8 @@ def get_route(hostname):
                 #df = pd.concat([df, pd.DataFrame({'Hop Count': str(ttl), 'Try': str(tries), 'IP': '*', 'Hostname': '*', 'Response Code': str(e)}, index=[0])], ignore_index=True)
                 df = pd.concat([df, pd.DataFrame({'Hop Count': ttl, 'Try': tries, 'IP': '*', 'Hostname': '*', 'Response Code': 'timeout'},index=[0])], ignore_index=True)
                 continue
+                
+                print("The sattements before else are all working")
 
             else:
                 # Fill in start
@@ -130,6 +132,7 @@ def get_route(hostname):
                     types, code, checksum_val, ID, sequence = struct.unpack("bbHHh", icmpHeader)
                 else:
                     continue
+                print("The sattements upto ICMP type are all working")
                 # Fill in end
                 try:  # try to fetch the hostname of the router that returned the packet - don't confuse with the hostname that you are tracing
                     # Fill in start
@@ -139,7 +142,7 @@ def get_route(hostname):
                     # Fill in start
                     routerHostname = "hostname not returnable"
                     # Fill in end
-
+                print("The sattements upto gethostname are all working")
                 if types == 11:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
