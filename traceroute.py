@@ -122,7 +122,7 @@ def get_route(hostname):
             else:
                 # Fill in start
                 # Fetch the icmp type from the IP packet
-                types = ord(recvPacket[20:21])
+                types = recvPacket[20:21]
                 # Fill in end
                 try:  # try to fetch the hostname of the router that returned the packet - don't confuse with the hostname that you are tracing
                     # Fill in start
