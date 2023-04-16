@@ -86,10 +86,8 @@ def get_route(hostname):
             # Fill in end
             mySocket.setsockopt(IPPROTO_IP, IP_TTL, struct.pack('I', ttl))
             mySocket.settimeout(TIMEOUT)
-
             recvPacket = b''
             addr = 0
-
             try:
                 d = build_packet()
                 mySocket.sendto(d, (hostname, 0))
@@ -103,7 +101,9 @@ def get_route(hostname):
                     df = pd.concat([df, pd.DataFrame({'Hop Count': str(ttl), 'Try': str(tries), 'IP': '*', 'Hostname': '*', 'Response Code': 'timeout'}, index=[0])], ignore_index=True)
                     # print(df)
                     # Fill in end
-                    recvPacket, addr = mySocket.recvfrom(1024)
+                    recvPacket = mySocket.recvfrom(1024)
+                    addr = recvPacket[1]
+                    print(recvPacket, "  ", addr)
                     timeReceived = time.time()
                     timeLeft = timeLeft - howLongInSelect
                 if timeLeft <= 0:
@@ -122,11 +122,16 @@ def get_route(hostname):
             else:
                 # Fill in start
                 # Fetch the icmp type from the IP packet
-                types = recvPacket[20:21]
+                icmpHeader = recvPacket[20:28]
+                if len(icmpHeader) >= 8:
+                    types, code, checksum_val, ID, sequence = struct.unpack("bbHHh", icmpHeader)
+                else:
+                    continue
                 # Fill in end
                 try:  # try to fetch the hostname of the router that returned the packet - don't confuse with the hostname that you are tracing
                     # Fill in start
-                    routerHostname = gethostbyaddr(addr[0])[0]
+                    routerHostname = socket.gethostbyaddr(addr)
+                    print(routerHostname)
                     # Fill in end
                 except herror:  # if the router host does not provide a hostname use "hostname not returnable"
                     # Fill in start
