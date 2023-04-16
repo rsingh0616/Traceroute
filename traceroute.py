@@ -124,13 +124,13 @@ def get_route(hostname):
                 types = recvPacket[20]
                 # Fill in end
                 try:  # try to fetch the hostname of the router that returned the packet - don't confuse with the hostname that you are tracing
-                # Fill in start
-                routerhost = socket.gethostbyaddr(addr[0])[0]
-                # Fill in end
+                    # Fill in start
+                    routerhost = socket.gethostbyaddr(addr[0])[0]
+                    # Fill in end
                 except herror:  # if the router host does not provide a hostname use "hostname not returnable"
-                # Fill in start
-                routerhost = "hostname not returnable"
-                # Fill in end
+                    # Fill in start
+                    routerhost = "hostname not returnable"
+                    # Fill in end
 
                 if types == 11:
                     bytes = struct.calcsize("d")
@@ -159,12 +159,12 @@ def get_route(hostname):
                     # Fill in end
                     return df
                 else:
-                # Fill in start
-                # If there is an exception/error to your if statements, you should append that to your df here
-                types_else = pd.DataFrame({'Hop Count': ttl, 'Try': tries, 'IP': addr[0], 'Hostname': routerhost, 'Response': 'Unknown'})
-                df = pd.concat([df, types_else], ignore_index=True)
-                # Fill in end
-                break
+                    # Fill in start
+                    # If there is an exception/error to your if statements, you should append that to your df here
+                    types_else = pd.DataFrame({'Hop Count': ttl, 'Try': tries, 'IP': addr[0], 'Hostname': routerhost, 'Response': 'Unknown'})
+                    df = pd.concat([df, types_else], ignore_index=True)
+                    # Fill in end
+                    break
     return df
 
 
