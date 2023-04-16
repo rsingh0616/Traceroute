@@ -124,8 +124,7 @@ def get_route(hostname):
                 #df = pd.concat([df, pd.DataFrame({'Hop Count': ttl, 'Try': tries, 'IP': '*', 'Hostname': '*', 'Response Code': 'timeout'},index=[0])], ignore_index=True)
                 print("The sattements are all working 3")
                 print(df)
-                
-                continue
+                #continue
                 
                 print("The sattements before else are all working")
 
