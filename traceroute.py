@@ -99,7 +99,7 @@ def get_route(hostname):
                     # Fill in start
                     # append response to your dataframe including hop #, try #, and "timeout" responses as required by the acceptance criteria
                     timeout_df1 = pd.DataFrame({'Hop Count': ttl, 'Try': tries, 'IP': '*', 'Hostname': '*', 'Response': 'timeout'})
-                    df = pd.concat([df, timeout_df1], ignore_index=True)
+                    df = pd.concat([df, timeout_df1], index=[0])
                     # print (df)
                     # Fill in end
                 recvPacket, addr = mySocket.recvfrom(1024)
@@ -109,13 +109,13 @@ def get_route(hostname):
                     # Fill in start
                     # append response to your dataframe including hop #, try #, and "timeout" responses as required by the acceptance criteria
                     timeout_df2 = pd.DataFrame({'Hop Count': ttl, 'Try': tries, 'IP': '*', 'Hostname': '*', 'Response': 'timeout'})
-                    df = pd.concat([df, timeout_df2], ignore_index=True)
+                    df = pd.concat([df, timeout_df2], index=[0])
                     # print (df)
                     # Fill in end
             except Exception as e:
                 # print (e) # uncomment to view exceptions
                 timeout_df3 = pd.DataFrame({'Hop Count': ttl, 'Try': tries, 'IP': '*', 'Hostname': '*', 'Response': 'timeout'})
-                df = pd.concat([df, timeout_df3], ignore_index=True)
+                df = pd.concat([df, timeout_df3], index=[0])
                 continue
 
             else:
@@ -134,12 +134,11 @@ def get_route(hostname):
 
                 if types == 11:
                     bytes = struct.calcsize("d")
-                    timeSent = struct.unpack("d", recvPacket[28:28 +
-                                                                bytes])[0]
+                    timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     # Fill in start
                     # You should update your dataframe with the required column field responses here
                     types_11 = pd.DataFrame({'Hop Count': ttl, 'Try': tries, 'IP': addr[0], 'Hostname': routerhost, 'Response': 'TTL exceeded'})
-                    df = pd.concat([df, types_11], ignore_index=True)
+                    df = pd.concat([df, types_11], index=[0])
                     # Fill in end
                 elif types == 3:
                     bytes = struct.calcsize("d")
@@ -147,7 +146,7 @@ def get_route(hostname):
                     # Fill in start
                     # You should update your dataframe with the required column field responses here
                     types_3 = pd.DataFrame({'Hop Count': ttl, 'Try': tries, 'IP': addr[0], 'Hostname': routerhost, 'Response': 'Destination Unreachable'})
-                    df = pd.concat([df, types_3], ignore_index=True)
+                    df = pd.concat([df, types_3], index=[0])
                     # Fill in end
                 elif types == 0:
                     bytes = struct.calcsize("d")
@@ -155,14 +154,14 @@ def get_route(hostname):
                     # Fill in start
                     # You should update your dataframe with the required column field responses here
                     types_0 = pd.DataFrame({'Hop Count': ttl, 'Try': tries, 'IP': addr[0], 'Hostname': routerhost, 'Response': 'Success'})
-                    df = pd.concat([df, types_0], ignore_index=True)
+                    df = pd.concat([df, types_0], index=[0])
                     # Fill in end
                     return df
                 else:
                     # Fill in start
                     # If there is an exception/error to your if statements, you should append that to your df here
                     types_else = pd.DataFrame({'Hop Count': ttl, 'Try': tries, 'IP': addr[0], 'Hostname': routerhost, 'Response': 'Unknown'})
-                    df = pd.concat([df, types_else], ignore_index=True)
+                    df = pd.concat([df, types_else], index=[0])
                     # Fill in end
                     break
     return df
